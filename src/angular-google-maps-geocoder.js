@@ -55,6 +55,17 @@ agmg.service("geocoder", ["$q", function($q) {
         return defer.promise;
     };
     
+    this.geocode_by_latlng = function(lat_lng) {
+        var self = this;
+        var defer = $q.defer();
+        
+        geocoder.geocode({ latLng: lat_lng }, function(results, status) {
+            self.handle_reply(defer, results, status);
+        });
+        
+        return defer.promise;
+    };
+    
     this.geocode_by_query = function(query) {
         var self = this;
         var defer = $q.defer();
